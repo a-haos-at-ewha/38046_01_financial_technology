@@ -98,31 +98,5 @@ EOL
 
 create_fintech_workspace "haos_work"
 
+print "enter command 'python haos_work/fintech_task_runners/fintec_test_script.py'"
 
-:<<EOF
-
-# Next we copy the files we need.
-
-# This is the base of the command : cp -rf /source/path/ /destination/path/
-# (the -rf is a switch with two options; recursive and force. It is very important that you be carefull with the use of the force switch!)
-
-cp -rf neural-networks-and-deep-learning-master/src/* run_mnist_thingy/
-cp -rf neural-networks-and-deep-learning-master/data/* data/
-
-
-cd run_mnist_thingy
-cat > do_some_figuring.py <<EOL
-import mnist_loader
-training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
-
-import network
-
-net = network.Network([784, 30, 10])
-
-net.SGD(training_data, 30, 10, 3.0, test_data=test_data)
-
-EOL
-
-python do_some_figuring.py
-
-EOF
