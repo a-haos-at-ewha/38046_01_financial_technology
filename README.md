@@ -22,3 +22,10 @@ __________                                      __          __  .__
 # Ewha Womans' student Haos' understanding of Pro. Dr. Seth H. Huang's Financial Technology Lecture Series (38046_01)
 
 ### *The public repository for understanding and work done by Benjamin Haos.*
+
+#### You can:
+
+* View the slides
+* Checkout the scripts and/or code
+* ...
+* ...
