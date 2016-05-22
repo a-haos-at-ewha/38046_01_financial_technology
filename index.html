@@ -50,25 +50,28 @@
 
 <body>
 
-    <div>
-        <x3d id="logo_full_screen">
-            <scene>
-                <Viewpoint id="spun_logo_viewpoint" position="0.01300 0.13000 0.35891" orientation="0.00000 1.00000 0.00000 0.01257" zNear="0.16130" zFar="0.64544" description="defaultX3DViewpointNode"></Viewpoint>
+    <a href="https://www.google.com/">
 
-                <Transform DEF="logos">
-                    <Inline url="assTecx/obj/carroll_ewha_fintech_mashup.x3d"></Inline>
-                </Transform>
+        <div>
+            <x3d id="logo_full_screen">
+                <scene>
+                    <Viewpoint id="spun_logo_viewpoint" position="0.01300 0.13000 0.35891" orientation="0.00000 1.00000 0.00000 0.01257" zNear="0.16130" zFar="0.64544" description="defaultX3DViewpointNode"></Viewpoint>
 
-                <timeSensor DEF='clock' cycleInterval='8' loop='true'></timeSensor>
-                <orientationInterpolator DEF='spinThings' key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0  0 1 0 1.57079  0 1 0 3.14159  0 1 0 4.71239  0 1 0 6.28317'></orientationInterpolator>
+                    <Transform DEF="logos">
+                        <Inline url="assTecx/obj/carroll_ewha_fintech_mashup.x3d"></Inline>
+                    </Transform>
 
-                <ROUTE fromNode='clock' fromField='fraction_changed' toNode='spinThings' toField='set_fraction'></ROUTE>
-                <ROUTE fromNode='spinThings' fromField='value_changed' toNode='logos' toField='set_rotation'></ROUTE>
+                    <timeSensor DEF='clock' cycleInterval='8' loop='true'></timeSensor>
+                    <orientationInterpolator DEF='spinThings' key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0  0 1 0 1.57079  0 1 0 3.14159  0 1 0 4.71239  0 1 0 6.28317'></orientationInterpolator>
 
-                <NavigationInfo type='none'>
-            </scene>
-        </x3d>
-    </div>
+                    <ROUTE fromNode='clock' fromField='fraction_changed' toNode='spinThings' toField='set_fraction'></ROUTE>
+                    <ROUTE fromNode='spinThings' fromField='value_changed' toNode='logos' toField='set_rotation'></ROUTE>
+
+                    <NavigationInfo type='none'>
+                </scene>
+            </x3d>
+        </div>
+    </a>
 
 
 
