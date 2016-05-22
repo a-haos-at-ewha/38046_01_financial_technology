@@ -67,7 +67,7 @@ function create_fintech_workspace() {
             # This mods the mnist_loader.py to change where the loader looks for the test data.
             local old_string="../data/mnist.pkl.gz"
             local new_string="haos_work/fintech_test_data/data/mnist.pkl.gz"
-            sed -i -e 's,'"$old_string"','"$new_string"',g' ./"$data_source_directory"/mnist_loader.py
+            sed -i -e 's,'"$old_string"','"$new_string"',g' ./"$deep_learning_scripts_directory"/mnist_loader.py
 
             setup_numpy
             
@@ -98,5 +98,5 @@ EOL
 
 create_fintech_workspace "haos_work"
 
-print "enter command 'python haos_work/fintech_task_runners/fintec_test_script.py'"
+echo "enter command 'python haos_work/fintech_task_runners/fintec_test_script.py'"
 
