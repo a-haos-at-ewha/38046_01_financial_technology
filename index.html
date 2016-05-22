@@ -2,8 +2,33 @@
 <html>
 
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>A FinTechy Haos!</title>
 
+    <!-- Library scripts and markup -->
+    <script type='text/javascript' src='assTecx/js/x3dom.js'></script>
+    <link rel='stylesheet' type='text/css' href='assTecx/css/x3dom.css' />
+    <style>
+        body {
+            background-color: black;
+        }
+        
+        #logo_full_screen {
+            width: 100%;
+            height: 100%;
+            border-style: none;
+            /*
+            
+            background: #000 url("assTecx/obj/carroll_ewha_fintech_mashup.jpg");
+            */
+            background-position: 25% 10%;
+            background-color: black;
+        }
+    </style>
+
+
+
+    <!-- The favilink bits... -->
     <link rel="apple-touch-icon" sizes="57x57" href="assTecx/img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assTecx/img/favicon//apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assTecx/img/favicon//apple-icon-72x72.png">
@@ -24,7 +49,31 @@
 </head>
 
 <body>
-    Hello World!
+
+    <x3d id="logo_full_screen">
+        <scene>
+            <Viewpoint id="spun_logo_viewpoint" position="0.01300 0.13000 0.35891" orientation="0.00000 1.00000 0.00000 0.01257" zNear="0.16130" zFar="0.64544" description="defaultX3DViewpointNode"></Viewpoint>
+
+            <Transform DEF="logos">
+                <Inline url="assTecx/obj/carroll_ewha_fintech_mashup.x3d"></Inline>
+            </Transform>
+
+            <timeSensor DEF='clock' cycleInterval='8' loop='true'></timeSensor>
+            <orientationInterpolator DEF='spinThings' key='0 0.25 0.5 0.75 1' keyValue='0 1 0 0  0 1 0 1.57079  0 1 0 3.14159  0 1 0 4.71239  0 1 0 6.28317'></orientationInterpolator>
+
+            <ROUTE fromNode='clock' fromField='fraction_changed' toNode='spinThings' toField='set_fraction'></ROUTE>
+            <ROUTE fromNode='spinThings' fromField='value_changed' toNode='logos' toField='set_rotation'></ROUTE>
+
+            <NavigationInfo type='none'>
+        </scene>
+    </x3d>
+
+
+
 </body>
+<!-- 
+
+<script type='text/javascript' src='assTecx/js/haos_redirect.js'></script>
+-->
 
 </html>
