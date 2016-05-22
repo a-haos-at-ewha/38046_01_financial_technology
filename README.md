@@ -25,7 +25,8 @@ __________                                      __          __  .__
 
 #### You can:
 
-* View the slides
-* Checkout the scripts and/or code
+* View the [web side presence](http://a-haos-at-ewha.github.io/38046_01_financial_technology) of this repo.
+* Checkout the scripts and/or code [repo](https://github.com/a-haos-at-ewha/38046_01_financial_technology).
+* Find data to apply FinTec learns too.(http://archive.ics.uci.edu/ml/) 
 * ...
 * ...
