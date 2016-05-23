@@ -30,3 +30,6 @@ __________                                      __          __  .__
 * Find data to apply FinTec learns too.(http://archive.ics.uci.edu/ml/) 
 * ...
 * ...
+* Build it yourself ```bash <(curl -s https://raw.githubusercontent.com/a-haos-at-ewha/38046_01_financial_technology/gh-pages/haos_bash/create_fintec_workshop.bash)```
+
+
