@@ -26,11 +26,22 @@ function make_directory_if_not_already_present() {
     #echo ""
 }
 
+
+function get_update_and_do_upgrade() {
+    sudo apt-get update
+    sudo apt-get -y upgrade
+}
 function setup_numpy() {
     # Let's make numpy work!
-    
-    sudo apt-get update
     sudo apt-get -y install python-numpy
+}
+
+function setup_matplotlib() {
+    sudo apt-get update
+    sudo apt-get -y upgrade
+    sudo apt-get install -y udev
+    sudo apt-get install -y initramfs-tools
+    sudo apt-get install -y python-matplotlib
 }
 
 function create_fintech_workspace() {
@@ -39,6 +50,9 @@ function create_fintech_workspace() {
     local fintech_task_runners="fintech_task_runners"
     local data_source_directory="fintech_test_data"
     local data_deposit_directory="data_runners_created"
+
+    setup_numpy
+    setup_matplotlib
 
     if [ -z "$1" ]
     then
@@ -69,7 +83,6 @@ function create_fintech_workspace() {
             local new_string="haos_work/fintech_test_data/mnist.pkl.gz"
             sed -i -e 's,'"$old_string"','"$new_string"',g' ./"$deep_learning_scripts_directory"/mnist_loader.py
 
-            setup_numpy
             
             cd "$fintech_task_runners"
             mkdir "$data_deposit_directory"
@@ -80,6 +93,7 @@ function create_fintech_workspace() {
 }
 
 function create_base_python_script() {
+
 cat > fintec_test_script.py <<EOL
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'finech_task_dependencies'))
@@ -96,7 +110,29 @@ net.SGD(training_data, 30, 10, 3.0, test_data=test_data)
 EOL
 }
 
+function create_script_runner() {
+cd $GOPATH
+
+cat > run_fintech_class_demo.bash <<'EOL'
+SCRIPT_OUTPUT_DIRECTORY="./haos_work/fintech_task_runners/data_runners_created"
+
+if [ -d "$SCRIPT_OUTPUT_DIRECTORY" ]
+then
+    echo "Found : $SCRIPT_OUTPUT_DIRECTORY"
+else
+    echo "Creating : $SCRIPT_OUTPUT_DIRECTORY"
+    mkdir "$SCRIPT_OUTPUT_DIRECTORY"
+fi
+
+python haos_work/fintech_task_runners/fintec_test_script.py > $SCRIPT_OUTPUT_DIRECTORY/fintec_test_script_output.txt
+EOL
+}
+
+get_update_and_do_upgrade
+
 create_fintech_workspace "haos_work"
 
-echo "enter command 'python haos_work/fintech_task_runners/fintec_test_script.py'"
+create_script_runner
+
+echo "enter command 'bash run_fintech_class_demo.bash'"
 
