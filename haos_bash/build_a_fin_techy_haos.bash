@@ -37,8 +37,7 @@ function setup_numpy() {
 }
 
 function setup_matplotlib() {
-    sudo apt-get update
-    sudo apt-get -y upgrade
+    # Let's make matplotlib work!
     sudo apt-get install -y udev
     sudo apt-get install -y initramfs-tools
     sudo apt-get install -y python-matplotlib
@@ -71,7 +70,7 @@ function create_fintech_workspace() {
             unzip master.zip -d ./temp
             # Make a directory for the tasks
             mkdir "$deep_learning_scripts_directory"
-            mkdir "$fintech_task_runners"
+            git clone https://github.com/a-haos-at-ewha/fintech_scripts.git "$fintech_task_runners"
             mkdir "$data_source_directory"
             
             cp -rf ./temp/neural-networks-and-deep-learning-master/src/* "$deep_learning_scripts_directory/"
@@ -86,7 +85,7 @@ function create_fintech_workspace() {
             
             cd "$fintech_task_runners"
             mkdir "$data_deposit_directory"
-            create_base_python_script "$data_deposit_directory"
+            # create_base_python_script "$data_deposit_directory"
         fi
 
     fi
@@ -105,7 +104,7 @@ training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
 
 net = network.Network([784, 30, 10])
 
-net.SGD(training_data, 30, 10, 3.0, test_data=test_data)
+net.SGD(training_data, 5, 10, 3.0, test_data=test_data)
 
 EOL
 }
@@ -124,7 +123,7 @@ else
     mkdir "$SCRIPT_OUTPUT_DIRECTORY"
 fi
 
-python haos_work/fintech_task_runners/fintec_test_script.py > $SCRIPT_OUTPUT_DIRECTORY/fintec_test_script_output.txt
+python haos_work/fintech_task_runners/fintec_test_script.py
 EOL
 }
 
@@ -134,5 +133,5 @@ create_fintech_workspace "haos_work"
 
 create_script_runner
 
-echo "enter command 'bash run_fintech_class_demo.bash'"
+bash run_fintech_class_demo.bash
 

@@ -1,3 +1,5 @@
+cd $GOPATH
+
 git config --global credential.helper 'cache --timeout=172800'
 
 git clone https://github.com/a-haos-at-ewha/38046_01_financial_technology.git public_fintec
