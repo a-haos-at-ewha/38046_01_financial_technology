@@ -5,4 +5,4 @@ git clone https://gitlab.com/ewha_spring_2016/38046_01_financial_technology.git 
 
 git clone https://gitlab.com/ewha_spring_2016/z_spring_2016_bash_toolset.git
 
-bash public_fintec/haos_bash/create_fintec_workshop.bash
+bash public_fintec/haos_bash/build_a_fin_techy_haos.bash
