@@ -123,7 +123,12 @@ else
     mkdir "$SCRIPT_OUTPUT_DIRECTORY"
 fi
 
-python haos_work/fintech_task_runners/fintec_test_script.py
+python haos_work/fintech_task_runners/fintec_test_script.py > example_output_1.txt
+python haos_work/fintech_task_runners/example_script_6.py
+python haos_work/fintech_task_runners/example_script_1.py > example_output_2.txt
+python haos_work/fintech_task_runners/example_script_2.py > example_output_2.txt
+python haos_work/fintech_task_runners/example_script_3.py > example_output_3.txt
+python haos_work/fintech_task_runners/example_script_4.py > example_output_4.txt
 EOL
 }
 
