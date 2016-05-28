@@ -136,7 +136,7 @@ get_update_and_do_upgrade
 
 create_fintech_workspace "haos_work"
 
-create_script_runner
+#create_script_runner
 
-bash run_fintech_class_demo.bash
+# bash run_fintech_class_demo.bash
 
