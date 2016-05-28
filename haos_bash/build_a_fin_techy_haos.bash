@@ -142,7 +142,7 @@ get_update_and_do_upgrade
 
 create_fintech_workspace "$fintec_workspace_directory"
 
-create_script_runner
+#create_script_runner
 
-bash run_fintech_class_demo.bash
+# bash run_fintech_class_demo.bash
 
