@@ -4,7 +4,8 @@
 
 # ToDo : Move to Cloud9 VM project directory.
 
-fintec_workspace_directory = "fintechaos_workspace"
+fintec_workspace_directory="fintechaos_workspace"
+name_for_script_runner="script_runner.bash"
 
 function make_directory_if_not_already_present() {
     cd "$GOPATH"
@@ -112,9 +113,7 @@ EOL
 
 function create_script_runner() {
 
-    local name_for_script_runner="script_runner.bash"
-    local fintec_workspace_directory="fintec_workspace"
-    cd $GOPATH
+cd $GOPATH
 
 cat > "$name_for_script_runner"<<EOL
 SCRIPT_OUTPUT_DIRECTORY="./$fintec_workspace_directory/fintech_task_runners/data_runners_created"
@@ -142,7 +141,6 @@ get_update_and_do_upgrade
 
 create_fintech_workspace "$fintec_workspace_directory"
 
-#create_script_runner
+create_script_runner
 
-# bash run_fintech_class_demo.bash
-
+bash $name_for_script_runner
