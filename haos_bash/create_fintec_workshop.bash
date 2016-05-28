@@ -24,4 +24,4 @@ git clone https://gitlab.com/ewha_spring_2016/38046_01_financial_technology.git 
 git clone https://gitlab.com/ewha_spring_2016/z_spring_2016_bash_toolset.git
 #ask_user_to_continue
 
-bash public_fintec/haos_bash/build_a_fin_techy_haos.bash
+bash public_fintec/haos_bash/build_finitechaos.bash

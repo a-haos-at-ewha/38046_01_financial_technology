@@ -5,7 +5,7 @@
 # ToDo : Move to Cloud9 VM project directory.
 
 fintec_workspace_directory="fintechaos_workspace"
-name_for_script_runner="script_runner.bash"
+name_for_script_runner="fintechaos_script_runner.bash"
 
 function make_directory_if_not_already_present() {
     cd "$GOPATH"
