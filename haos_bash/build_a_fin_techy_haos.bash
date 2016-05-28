@@ -4,6 +4,8 @@
 
 # ToDo : Move to Cloud9 VM project directory.
 
+fintec_workspace_directory="fintechaos_workspace"
+name_for_script_runner="script_runner.bash"
 
 function make_directory_if_not_already_present() {
     cd "$GOPATH"
@@ -91,7 +93,7 @@ function create_fintech_workspace() {
             
             # Modify the mnist_loader.py to change where the loader looks for the mnist test data.
             local old_string="../data/mnist.pkl.gz"
-            local new_string="haos_work/fintech_test_data/mnist.pkl.gz"
+            local new_string="$fintec_workspace_directory/fintech_test_data/mnist.pkl.gz"
             sed -i -e 's,'"$old_string"','"$new_string"',g' ./"$deep_learning_scripts_directory"/mnist_loader.py
 
             
@@ -122,33 +124,35 @@ EOL
 }
 
 function create_script_runner() {
+
 cd $GOPATH
 
-cat > run_fintech_class_demo.bash <<'EOL'
-SCRIPT_OUTPUT_DIRECTORY="./haos_work/fintech_task_runners/data_runners_created"
+cat > "$name_for_script_runner"<<EOL
+SCRIPT_OUTPUT_DIRECTORY="./$fintec_workspace_directory/fintech_task_runners/data_runners_created"
 
-if [ -d "$SCRIPT_OUTPUT_DIRECTORY" ]
+if [ -d "\$SCRIPT_OUTPUT_DIRECTORY" ]
 then
-    echo "Found : $SCRIPT_OUTPUT_DIRECTORY"
+    echo "Found : \$SCRIPT_OUTPUT_DIRECTORY"
 else
-    echo "Creating : $SCRIPT_OUTPUT_DIRECTORY"
-    mkdir "$SCRIPT_OUTPUT_DIRECTORY"
+    echo "Creating : \$SCRIPT_OUTPUT_DIRECTORY"
+    mkdir "\$SCRIPT_OUTPUT_DIRECTORY"
 fi
 
-python haos_work/fintech_task_runners/fintec_test_script.py > example_output_1.txt
-python haos_work/fintech_task_runners/example_script_6.py
-python haos_work/fintech_task_runners/example_script_1.py > example_output_2.txt
-python haos_work/fintech_task_runners/example_script_2.py > example_output_2.txt
-python haos_work/fintech_task_runners/example_script_3.py > example_output_3.txt
-python haos_work/fintech_task_runners/example_script_4.py > example_output_4.txt
+python $fintec_workspace_directory/fintech_task_runners/fintec_test_script.py > "\$SCRIPT_OUTPUT_DIRECTORY"/example_output_1.txt
+python $fintec_workspace_directory/fintech_task_runners/example_script_1.py > "\$SCRIPT_OUTPUT_DIRECTORY"/example_output_2.txt
+python $fintec_workspace_directory/fintech_task_runners/example_script_2.py > "\$SCRIPT_OUTPUT_DIRECTORY"/example_output_2.txt
+python $fintec_workspace_directory/fintech_task_runners/example_script_3.py > "\$SCRIPT_OUTPUT_DIRECTORY"/example_output_3.txt
+python $fintec_workspace_directory/fintech_task_runners/example_script_4.py > "\$SCRIPT_OUTPUT_DIRECTORY"/example_output_4.txt
+
+python $fintec_workspace_directory/fintech_task_runners/example_script_6.1.py
 EOL
 }
 
+
 get_update_and_do_upgrade
 
-create_fintech_workspace "haos_work"
+create_fintech_workspace "$fintec_workspace_directory"
 
 create_script_runner
 
-bash run_fintech_class_demo.bash
-
+bash $name_for_script_runner
