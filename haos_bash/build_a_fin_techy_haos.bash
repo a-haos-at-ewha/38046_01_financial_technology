@@ -64,20 +64,32 @@ function create_fintech_workspace() {
             echo "created $1 directory."
             cd "$1"
         
-            # Get the files from GitHub repo : https://github.com/mnielsen/neural-networks-and-deep-learning
+            # Get files used for the deep learning exercises and examples from 
+            # GitHub repo : https://github.com/mnielsen/neural-networks-and-deep-learning
             wget https://github.com/mnielsen/neural-networks-and-deep-learning/archive/master.zip
-            # Unzip the files.
+            # Unzip the files into a temp directory.
             unzip master.zip -d ./temp
-            # Make a directory for the tasks
-            mkdir "$deep_learning_scripts_directory"
-            git clone https://github.com/a-haos-at-ewha/fintech_scripts.git "$fintech_task_runners"
-            mkdir "$data_source_directory"
             
+            # Make a directory for the source code data.
+            mkdir "$data_source_directory"
+            # Make a directory for the deep learning scipts script.
+            mkdir "$deep_learning_scripts_directory"
             cp -rf ./temp/neural-networks-and-deep-learning-master/src/* "$deep_learning_scripts_directory/"
             cp -rf ./temp/neural-networks-and-deep-learning-master/data/* "$data_source_directory"
+            
+            # Delete the temp directory.
             rm -rf temp
             
-            # This mods the mnist_loader.py to change where the loader looks for the test data.
+            # Clone the python script examples from class lectures.
+            git clone https://github.com/a-haos-at-ewha/fintech_scripts.git "$fintech_task_runners"
+            # Move into the just cloned repository.
+            cd "$fintech_task_runners"
+            # Remove the git tracking so as to not cause problems later...
+            rm -rf .git
+            # Go back to where you just were.
+            cd ..
+            
+            # Modify the mnist_loader.py to change where the loader looks for the mnist test data.
             local old_string="../data/mnist.pkl.gz"
             local new_string="haos_work/fintech_test_data/mnist.pkl.gz"
             sed -i -e 's,'"$old_string"','"$new_string"',g' ./"$deep_learning_scripts_directory"/mnist_loader.py
